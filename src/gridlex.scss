@@ -10,15 +10,15 @@
   flex-flow: row wrap;
   margin: 0 (-$gl-gutter/2);
 }
-
 .#{$gl-col-selector},
 [class*="#{$gl-col-selector}-"]{
   box-sizing: border-box;
-  flex: 0 1 auto;
-  padding-left: $gl-gutter/2;
-  padding-right: $gl-gutter/2;
+  flex: 0 0 auto;
+  padding: 0 ($gl-gutter/2) $gl-gutter;
 }
-
+.#{$gl-col-selector}{
+  flex: 1 1 0%;
+}
 .#{$gl-grid-selector}.#{$gl-col-selector},
 .#{$gl-grid-selector}[class*="#{$gl-col-selector}-"]{
   margin: 0;
@@ -36,13 +36,11 @@
       flex-basis: auto;
     }
   }
-// No spacing between cols : gutterless
+// No spacing between cols : noGutter
   &[class*="-gutterless"]{
-    margin-left: 0;
-    margin-right: 0;
+    margin: 0;
     > [class*="#{$gl-col-selector}"]{
-      padding-left: 0;
-      padding-right: 0;
+      padding: 0;
     }
   }
 
@@ -94,9 +92,6 @@
 
 // FOR COL
 [class*="#{$gl-col-selector}-"]{
-  &[class*="-grow"]{
-    flex-grow: 1;
-  }
   &[class*="-align-to-top"]{
     align-self: flex-start;
   }
@@ -106,14 +101,14 @@
   &[class*="-align-to-bottom"]{
     align-self: flex-end;
   }
-  &[class*="-stretch-vertically"]{
-    align-self: stretch;
-  }
   &[class*="-first"]{
     order: -1;
   }
   &[class*="-last"]{
     order: 1;
+  }
+  &[class*="-stretch-vertically"]{
+    align-self: stretch;
   }
 }
 
@@ -123,16 +118,16 @@
 @include makeGridByNumber(#{$gl-grid-selector});
 
 @media #{$gl-lg}{
-  @include makeGridByNumber(-lg);
+  @include makeGridByNumber(_lg);
 }
 @media #{$gl-md}{
-  @include makeGridByNumber(-md);
+  @include makeGridByNumber(_md);
 }
 @media #{$gl-sm}{
-  @include makeGridByNumber(-sm);
+  @include makeGridByNumber(_sm);
 }
 @media #{$gl-xs}{
-  @include makeGridByNumber(-xs);
+  @include makeGridByNumber(_xs);
 }
 
 
@@ -143,18 +138,18 @@
 @include makeOff(off);
 
 @media #{$gl-lg}{
-  @include makeCol(-lg);
-  @include makeOff(-lg);
+  @include makeCol(_lg);
+  @include makeOff(_lg);
 }
 @media #{$gl-md}{
-  @include makeCol(-md);
-  @include makeOff(-md);
+  @include makeCol(_md);
+  @include makeOff(_md);
 }
 @media #{$gl-sm}{
-  @include makeCol(-sm);
-  @include makeOff(-sm);
+  @include makeCol(_sm);
+  @include makeOff(_sm);
 }
 @media #{$gl-xs}{
-  @include makeCol(-xs);
-  @include makeOff(-xs);
+  @include makeCol(_xs);
+  @include makeOff(_xs);
 }
