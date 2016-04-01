@@ -4,8 +4,8 @@
 
 // Customizable Labels
 $gl-selector-prefix:    "" !default;
-$gl-grid-label:         'grid' !default;
-$gl-col-label:          'col' !default;
+$gl-grid-label:         "grid" !default;
+$gl-col-label:          "col" !default;
 $gl-gutter:             1rem !default; // Total
 $gl-breakpoint-xs:       35.5em !default; // up to 568px
 $gl-breakpoint-sm:       48em !default; // max 768px
