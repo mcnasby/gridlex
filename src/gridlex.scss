@@ -101,6 +101,9 @@
   &[class*="-align-to-bottom"]{
     align-self: flex-end;
   }
+  &[class*="-stretch-vertically"]{
+    align-self: stretch;
+  }
   &[class*="-first"]{
       order: -1;
   }
