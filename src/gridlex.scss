@@ -2,26 +2,25 @@
     GRIDLEX
     Just a Flexbox Grid System
 ========================================================================== */
-
 @import "gridlex-vars";
 
-[class*="grid"]{
+[class*="#{$gl-grid-selector}"]{
   box-sizing: border-box;
   display: flex;
   flex-flow: row wrap;
   margin: 0 (-$gl-gutter/2);
 }
-.col,
-[class*="col-"]{
+.#{$gl-col-selector},
+[class*="#{$gl-col-selector}-"]{
   box-sizing: border-box;
   flex: 0 0 auto;
   padding: 0 ($gl-gutter/2) $gl-gutter;
 }
-.col{
+.#{$gl-col-selector}{
   flex: 1 1 0%;
 }
-.grid.col,
-.grid[class*="col-"]{
+.#{$gl-grid-selector}.#{$gl-col-selector},
+.#{$gl-grid-selector}[class*="#{$gl-col-selector}-"]{
   margin: 0;
   padding: 0;
 }
@@ -30,32 +29,38 @@
     HELPERS SUFFIXES
 *************************/
 // FOR GRID
-[class*="grid-"]{
+[class*="#{$gl-grid-selector}-"]{
+  &[class*="-column"] {
+    flex-direction: column;
+    > [class*="#{$gl-col-selector}-"] {
+      flex-basis: auto;
+    }
+  }
 // No spacing between cols : noGutter
-  &[class*="-noGutter"]{
+  &[class*="-gutterless"]{
     margin: 0;
-    > [class*="col"]{
+    > [class*="#{$gl-col-selector}"]{
       padding: 0;
     }
   }
 
 // Horizontal alignment
-  &[class*="-center"]{
+  &[class*="-position-center"]{
     justify-content: center;
   }
-  &[class*="-right"]{
+  &[class*="-position-right"]{
     justify-content: flex-end;
     align-self: flex-end;
     margin-left: auto;
   }
 // Vertical alignment
-  &[class*="-top"]{
+  &[class*="-position-top"]{
     align-items: flex-start;
   }
-  &[class*="-middle"]{
+  &[class*="-position-middle"]{
     align-items: center;
   }
-  &[class*="-bottom"]{
+  &[class*="-position-bottom"]{
     align-items: flex-end;
   }
 
@@ -63,39 +68,37 @@
   &[class*="-reverse"]{
     flex-direction: row-reverse;
   }
-  &[class*="-column"] {
-    flex-direction: column;
-    > [class*="col-"] {
-      flex-basis: auto;
-    }
-  }
   &[class*="-column-reverse"]{
     flex-direction: column-reverse;
   }
 
 // Spaces between and around cols
-  &[class*="-spaceBetween"]{
+  &[class*="-space-between"]{
     justify-content: space-between;
   }
-  &[class*="-spaceAround"]{
+  &[class*="-space-around"]{
     justify-content: space-around;
   }
 
 // Equal heights columns
-  &[class*="-equalHeight"] > [class*="col"]{
+  &[class*="-equal-height"] > [class*="#{$gl-col-selector}"]{
     display: flex;
+  }
+
+  &[class*="-stretch-vertically"]{
+    align-items: stretch;
   }
 }
 
 // FOR COL
-[class*="col-"]{
-  &[class*="-top"]{
+[class*="#{$gl-col-selector}-"]{
+  &[class*="-align-to-top"]{
     align-self: flex-start;
   }
-  &[class*="-middle"]{
+  &[class*="-align-to-middle"]{
     align-self: center;
   }
-  &[class*="-bottom"]{
+  &[class*="-align-to-bottom"]{
     align-self: flex-end;
   }
   &[class*="-first"]{
@@ -109,41 +112,41 @@
 /************************
     GRID BY NUMBER
 *************************/
-@include makeGridByNumber(grid);
+@include makeGridByNumber(#{$gl-grid-selector});
 
 @media #{$gl-lg}{
-  @include makeGridByNumber(_lg);
+  @include makeGridByNumber(-lg);
 }
 @media #{$gl-md}{
-  @include makeGridByNumber(_md);
+  @include makeGridByNumber(-md);
 }
 @media #{$gl-sm}{
-  @include makeGridByNumber(_sm);
+  @include makeGridByNumber(-sm);
 }
 @media #{$gl-xs}{
-  @include makeGridByNumber(_xs);
+  @include makeGridByNumber(-xs);
 }
 
 
 /************************
     COLS SIZES
 *************************/
-@include makeCol(col);
+@include makeCol(#{$gl-col-selector});
 @include makeOff(off);
 
 @media #{$gl-lg}{
-  @include makeCol(_lg);
-  @include makeOff(_lg);
+  @include makeCol(-lg);
+  @include makeOff(-lg);
 }
 @media #{$gl-md}{
-  @include makeCol(_md);
-  @include makeOff(_md);
+  @include makeCol(-md);
+  @include makeOff(-md);
 }
 @media #{$gl-sm}{
-  @include makeCol(_sm);
-  @include makeOff(_sm);
+  @include makeCol(-sm);
+  @include makeOff(-sm);
 }
 @media #{$gl-xs}{
-  @include makeCol(_xs);
-  @include makeOff(_xs);
+  @include makeCol(-xs);
+  @include makeOff(-xs);
 }
