@@ -12,12 +12,9 @@
 .col,
 [class*="col-"] {
   box-sizing: border-box;
-  flex: 0 0 auto;
-  padding: 0 0.5rem 1rem;
-}
-
-.col {
-  flex: 1 1 0%;
+  flex: 0 1 auto;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .grid.col,
@@ -36,10 +33,12 @@
   flex-basis: auto;
 }
 [class*="grid-"][class*="-gutterless"] {
-  margin: 0;
+  margin-left: 0;
+  margin-right: 0;
 }
 [class*="grid-"][class*="-gutterless"] > [class*="col"] {
-  padding: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 [class*="grid-"][class*="-position-center"] {
   justify-content: center;
@@ -77,6 +76,9 @@
   align-items: stretch;
 }
 
+[class*="col-"][class*="-grow"] {
+  flex-grow: 1;
+}
 [class*="col-"][class*="-align-to-top"] {
   align-self: flex-start;
 }
